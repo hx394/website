@@ -1,0 +1,26 @@
+{
+  "name": "hx394-final-project",
+  "version": "1.0.0",
+  "description": "final project of hongzhen xu ait",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "hbs": "^4.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.8.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nyu-csci-ua-0480-001-003-fall-2018/hx394-final-project.git"
+  },
+  "author": "Hongzhen Xu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nyu-csci-ua-0480-001-003-fall-2018/hx394-final-project/issues"
+  },
+  "homepage": "https://github.com/nyu-csci-ua-0480-001-003-fall-2018/hx394-final-project#readme"
+}
