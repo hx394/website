@@ -38,15 +38,19 @@ An example user:
 
 
 ![Alt text](/public/img/display.png?raw=true "display")
+
 / - page for displaying messages
 
 ![Alt text](/public/img/add.png?raw=true "display")
+
 /add  -page for leave a message
 
 ![Alt text](/public/img/manage.png?raw=true "display")
+
 /manage  -page for managing
 
 # Site map
+
 ![Alt text](/public/img/sitemap.png?raw=true "display")
 
 # User Cases
