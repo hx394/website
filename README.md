@@ -1,4 +1,4 @@
-Message Board
+## Message Board
 
 # Overview
 This is a web app of message board. There are two kind of users: public and manager. Public user can leave a message, and see their own message by session. Manager page requires authentication, and can determine what shows up on the web page.
