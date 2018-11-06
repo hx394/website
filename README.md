@@ -65,7 +65,7 @@ Description: It validates the user input. If the length exceed maximum or other 
 ### (5 points) Automated functional testing for all of your routes
 Description: It automately performs tasks on the browser in the purpose of testing. It can also test on various platforms. I use it to make sure the website runs as I expect. Either Selenium or Headless Chrome will be my choice.
 
-[Link to initial main project file](/app.js)
+### [Link to initial main project file](/app.js)
 
 # Annotations/References Used
 None yet
