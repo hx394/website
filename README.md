@@ -31,7 +31,7 @@ An example user:
   hash: //a password hash  
 }  
 
-###[link to first draft of schemas](/db.js)
+### [link to first draft of schemas](/db.js)
 
 # Wireframes
 
