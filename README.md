@@ -7,29 +7,29 @@ This is a web app of message board. There are two kind of users: public and mana
 
 The application will store website data, Messages and Managing User.
 
-An example website data:
-{
-  website_id: //recognize this website
-  visited: //number of people visited
-  messages://number of messages received
+An example website data:  
+{  
+  website_id: //recognize this website  
+  visited: //number of people visited  
+  messages://number of messages received  
 }
 
 
-An example message:
-{
-  name: "username"
-  email: //user email address
-  secret: //a boolean tells if it is secret message or not
-  text: //the message body
-  createdAt: //timestamp 
-  session_id: //session id
-}
+An example message:  
+{  
+  name: "username"  
+  email: //user email address  
+  secret: //a boolean tells if it is secret message or not  
+  text: //the message body  
+  createdAt: //timestamp   
+  session_id: //session id  
+}  
 
-An example user:
-{
-  username:"username"
-  hash: //a password hash
-}
+An example user:  
+{  
+  username:"username"  
+  hash: //a password hash  
+}  
 
 [link to first draft of schemas](/db.js)
 
@@ -38,19 +38,19 @@ An example user:
 
 
 ![Alt text](/public/img/display.png?raw=true "display")
-
+<br/>
 / - page for displaying messages
 
 ![Alt text](/public/img/add.png?raw=true "display")
-
+<br/>
 /add  -page for leave a message
 
 ![Alt text](/public/img/manage.png?raw=true "display")
-
+<br/>
 /manage  -page for managing
 
 # Site map
-
+<br/>
 ![Alt text](/public/img/sitemap.png?raw=true "display")
 
 # User Cases
