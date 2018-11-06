@@ -27,4 +27,4 @@ const dataSchema= new mongoose.Schema({
 
 mongoose.model('Data',dataSchema);
 
-mongoose.connect('mongodb://localhost/hw05');
+mongoose.connect('mongodb://localhost/finalProject');
