@@ -50,8 +50,9 @@ An example user:
 /manage  -page for managing
 
 # Site map
-<br/>
+
 ![Alt text](/public/img/sitemap.png?raw=true "display")
+
 
 # User Cases
 1. As a public user, I can leave a message.
