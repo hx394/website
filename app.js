@@ -96,35 +96,35 @@ app.get('/add',(req,res)=>{
 		if(sessionOnlyMessages.length===0){
 			context.empty=true;
 		}
-		
+
 		res.render('add',context);
   });
 });
 
 app.post('/add',(req,res)=>{
 	Message.find({session_id:req.session.id},function(err,messages,count){
-		const context={
-			sessionOnlyMessages:messages
-		};
-		if(messages.length===0){
-			context.empty=true;
-		}
-		if(req.body.name===''){
-			console.log("empty name");
-			context.message="Name cannot be empty";
+	const context={
+		sessionOnlyMessages:messages
+	};
+	if(messages.length===0){
+		context.empty=true;
+	}
+	if(req.body.name===''){
+		console.log("empty name");
+		context.message="Name cannot be empty";
+		res.render('add',context);
+		return;
+	}else if(req.body.email===''){
+			console.log("empty email");
+			context.message="Email cannot be empty";
 			res.render('add',context);
 			return;
-		}else if(req.body.email===''){
-				console.log("empty email");
-				context.message="Email cannot be empty";
-				res.render('add',context);
-				return;
-		}else if(req.body.content===''){
-			console.log('empty content');
-			context.message="Content cannot be empty";
-			res.render('add',context);
-			return;
-		}
+	}else if(req.body.content===''){
+		console.log('empty content');
+		context.message="Content cannot be empty";
+		res.render('add',context);
+		return;
+	}
 		const currentDate = new Date();
 		const date = currentDate.getDate();
 		const month = currentDate.getMonth(); //Be careful! January is 0 not 1
@@ -147,7 +147,6 @@ app.post('/add',(req,res)=>{
 			});
 
 		});
-
 	});
 
 });

@@ -1,6 +1,7 @@
 
 .error {
   font-size: 3em;
+  color:black;
   background-color: #faa
 }
 
@@ -35,4 +36,12 @@ h3 { color: navy; }
 .displayMessage3{
   background-color: orange;
   border: 2px solid green;
+}
+
+.topRight{
+  border:1px solid #000;
+  font-size:2em;
+  position:absolute;
+  top:0px;
+  right:0px;
 }

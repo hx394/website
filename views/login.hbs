@@ -2,16 +2,41 @@
 {{#if message}}
 <div class="error">{{ message }}</div>
 {{/if}}
-<form method="POST" action="/login">
+<form name="login" method="POST" action="/login" onsubmit="return validateForm()">
 	<div>
 		<label for="username">Username:</label>
-		<input type="text" name="username" value="" required>
+		<input type="text" name="username" id="username" value="">
 	</div>
 	<div>
 		<label for="password">Password:</label>
-		<input type="password" name="password" value="" required>
+		<input type="password" name="password" id="password" value="">
 	</div>
 	<div>
 		<input type="submit" value="Login">
 	</div>
 </form>
+
+<script>
+function validateForm() {
+    const x = document.forms["login"]["username"].value;
+    if (x.length < 8 || x.length > 20) {
+				const div=document.getElementById('username');
+				const header=document.createElement('h1');
+				header.setAttribute("class","error");
+				const content=document.createTextNode("Username must be between 8 and 20 characters");
+        header.appendChild(content);
+				div.parentNode.appendChild(header);
+        return false;
+    }
+		const y = document.forms["login"]["password"].value;
+		if (y.length<8||y.length>20) {
+				const div=document.getElementById('password');
+				const header=document.createElement('h1');
+				header.setAttribute("class","error");
+				const content=document.createTextNode("Password must be between 8 and 20 characters");
+				header.appendChild(content);
+				div.parentNode.appendChild(header);
+				return false;
+		}
+}
+</script>

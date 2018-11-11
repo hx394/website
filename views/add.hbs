@@ -3,19 +3,18 @@
 {{#if message}}
 <div class="error">{{ message }}</div>
 {{/if}}
-
-<form method="POST" action="">
+<form name="send_message" method="POST" action="" onsubmit="return validateForm()">
 	<div>
 		<label for="name">Your name:</label>
-		<input type="text" id="name" name="name" value="" required>
+		<input type="text" id="name" name="name" value="">
 	</div>
 	<div>
 		<label for="email">Your email(email won't be posted):</label>
-		<input type="email" id="email" name="email" value="" required>
+		<input type="email" id="email" name="email" value="">
 	</div>
 	<div>
 		<label for="content">Content:</label>
-		<textarea name="content" id="content" placeholder="Say something..." required></textarea>
+		<textarea name="content" id="content" placeholder="Say something..."></textarea>
 	</div>
   <div>
     <p>Is this message a secret? Secret won't be posted on main page.</p>
@@ -39,3 +38,65 @@
   <p>Session id: {{session_id}}</p>
 </div>
 {{/each}}
+
+<script>
+function validateForm() {
+    const x = document.forms["send_message"]["name"].value;
+    if (x === "") {
+				const div=document.getElementById('name');
+				const header=document.createElement('h1');
+				header.setAttribute("class","error");
+				const content=document.createTextNode("Name must be filled out");
+        header.appendChild(content);
+				div.parentNode.appendChild(header);
+        return false;
+    }
+		if (x.length > 15) {
+				const div=document.getElementById('name');
+				const header=document.createElement('h1');
+				header.setAttribute("class","error");
+				const content=document.createTextNode("Name cannot be more than 15 characters");
+				header.appendChild(content);
+				div.parentNode.appendChild(header);
+				return false;
+		}
+		const y = document.forms["send_message"]["email"].value;
+		if (y === "") {
+				const div=document.getElementById('email');
+				const header=document.createElement('h1');
+				header.setAttribute("class","error");
+				const content=document.createTextNode("Email must be filled out");
+				header.appendChild(content);
+				div.parentNode.appendChild(header);
+				return false;
+		}
+		if (y.length > 20) {
+				const div=document.getElementById('email');
+				const header=document.createElement('h1');
+				header.setAttribute("class","error");
+				const content=document.createTextNode("Email cannot be more than 20 characters");
+				header.appendChild(content);
+				div.parentNode.appendChild(header);
+				return false;
+		}
+		const z = document.forms["send_message"]["content"].value;
+		if (z === "") {
+				const div=document.getElementById('content');
+				const header=document.createElement('h1');
+				header.setAttribute("class","error");
+				const content=document.createTextNode("Content must be filled out");
+				header.appendChild(content);
+				div.parentNode.appendChild(header);
+				return false;
+		}
+		if (z.length > 300) {
+				const div=document.getElementById('content');
+				const header=document.createElement('h1');
+				header.setAttribute("class","error");
+				const content=document.createTextNode("Content length cannot exceed 300");
+				header.appendChild(content);
+				div.parentNode.appendChild(header);
+				return false;
+		}
+}
+</script>
