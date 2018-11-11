@@ -1,0 +1,30 @@
+{{#if message}}
+<div class="error">{{ message }}</div>
+{{/if}}
+
+<h3>Manage space</h3>
+{{#each messages}}
+<div class='displayMessage3'>
+  <p>Name: {{name}} Time: {{createdAt}}</p>
+  <p>Email: {{email}}</p>
+  <p>Secret: {{secret}}</p>
+  <p>Display: {{display}}</p>
+  <p>Session: {{session_id}}</p>
+  <p>Message: {{text}}</p>
+  <form method="POST" action="/delete">
+    <input type=hidden name=stuff value="{{slug}}">
+  	<input type="submit" value="Delete">
+  </form>
+  {{#unless secret}}
+  <form method="POST" action="/display">
+    <input type=hidden name=stuff value="{{slug}}">
+    <input type="submit" value="display">
+  </form>
+  <form method="POST" action="/cancelDisplay">
+    <input type=hidden name=stuff value="{{slug}}">
+    <input type="submit" value="Cancel display">
+  </form>
+  {{/unless}}
+
+</div>
+{{/each}}

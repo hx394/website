@@ -1,0 +1,13 @@
+
+<div>
+<p>visited: {{visited}}</p>
+<p>messages: {{messageNum}}</p>
+</div>
+
+<h1>The Glorious Message Board</h1>
+{{#each messages}}
+<div class='displayMessage1'>
+  <p>Name: {{name}} Time: {{createdAt}}</p>
+  <p>Message: {{text}}</p>
+</div>
+{{/each}}

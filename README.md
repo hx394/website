@@ -61,9 +61,9 @@ An example user:
 
 # Research topics
 ### (3 points) Perform client side form validation using custom JavaScript or JavaScript library
-Description: It validates the user input. If the length exceed maximum or other strange input happens, an error message will be printed to the page(into DOM). I use it to prevent the website been hacked. I do not know any candidate modules yet.
-### (5 points) Automated functional testing for all of your routes
-Description: It automately performs tasks on the browser in the purpose of testing. It can also test on various platforms. I use it to make sure the website runs as I expect. Either Selenium or Headless Chrome will be my choice.
+Description: It validates the user input. If the length exceed maximum or other strange input happens, an error message will be printed to the page(into DOM). I use it to prevent the website been hacked. 
+### (5 points) User Authentication using passport
+Description: It authenticates the user. It automatically creates hash. Played with it for a while.
 
 ### [Link to initial main project file](/app.js)
 

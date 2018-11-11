@@ -1,0 +1,38 @@
+
+.error {
+  font-size: 3em;
+  background-color: #faa
+}
+
+#name,#email{
+  font-size:2em;
+}
+
+#content{
+  height:10em;
+  width:30em;
+  font-size:2em
+}
+body {
+  padding-top: 50px;
+  background-color: #ffa;
+}
+
+h1 { color: purple; }
+
+h3 { color: navy; }
+
+.displayMessage1{
+  background-color: #eee;
+  border: 2px solid black;
+}
+
+.displayMessage2{
+  background-color: pink;
+  border: 2px dashed yellow;
+}
+
+.displayMessage3{
+  background-color: orange;
+  border: 2px solid green;
+}

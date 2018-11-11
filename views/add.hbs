@@ -1,0 +1,41 @@
+
+<h2>Leave a new message</h2>
+{{#if message}}
+<div class="error">{{ message }}</div>
+{{/if}}
+
+<form method="POST" action="">
+	<div>
+		<label for="name">Your name:</label>
+		<input type="text" id="name" name="name" value="" required>
+	</div>
+	<div>
+		<label for="email">Your email(email won't be posted):</label>
+		<input type="email" id="email" name="email" value="" required>
+	</div>
+	<div>
+		<label for="content">Content:</label>
+		<textarea name="content" id="content" placeholder="Say something..." required></textarea>
+	</div>
+  <div>
+    <p>Is this message a secret? Secret won't be posted on main page.</p>
+    <p><input type="radio" name="secret" value="false" checked='checked' />No
+    <input type="radio" name="secret" value="true" />Yes</p>
+  </div>
+	<input type="submit" value="Add">
+</form>
+
+
+
+<hr/>
+<h3>recent messages i left</h3>
+{{#if empty}}
+	<p>No recent messages</p>
+{{/if}}
+{{#each sessionOnlyMessages}}
+<div class='displayMessage2'>
+  <p>Name: {{name}} Time: {{createdAt}}</p>
+  <p>Content: {{text}}</p>
+  <p>Session id: {{session_id}}</p>
+</div>
+{{/each}}
