@@ -68,4 +68,4 @@ Description: It authenticates the user. It automatically creates hash. Played wi
 ### [Link to initial main project file](/app.js)
 
 # Annotations/References Used
-None yet
+[javascript input validation](https://www.w3schools.com/js/js_validation.asp)
