@@ -50,11 +50,12 @@ app.use(function(req,res,next){
 
 
 app.use(function(req,res,next){
-	Data.find(function(err,datas,count){
+	Data.find({website_id:888},function(err,datas,count){
 		if(datas.length===0){
-			const d=new Data({website_id:123,
+			const d=new Data({website_id:888,
 				visited:0,
-				messages:0});
+				messages:0,
+				newmessages:0});
 			d.save(function(err,saveData,saveCount){
 					next();
 			});
@@ -67,21 +68,36 @@ app.use(function(req,res,next){
 	});
 });
 
+app.get('/',(req,res)=>{
+	Data.findOne({website_id:888},function(err,data,count){
+		data.visited=data.visited+1;
+		const visitNum=data.visited;
+		const newmessages=data.newmessages;
+		data.save(function(err,saveData,saveCount){
+			const context={
+				visited:visitNum,
+				newmessages:newmessages
+			};
+			res.render('index',context);
+		});
+	});
+});
 
+app.get('/aboutme',(req,res)=>{
+	res.render('aboutme');
+});
 
-app.get('/', (req, res) => {
+app.get('/messageboard', (req, res) => {
   Message.find({display:true,secret:false},function(err,messages,count){
-			Data.findOne({website_id:123},function(err,data,count){
-				data.visited=data.visited+1;
-				const visitNum=data.visited;
+			Data.findOne({website_id:888},function(err,data,count){
 				const messageNum=data.messages;
 				data.save(function(err,saveData,saveCount){
 					const context={
-						visited:visitNum,
 						messageNum:messageNum,
-						messages:messages
+						messages:messages,
+						displayed:messages.length
 					};
-					res.render('index',context);
+					res.render('messageboard',context);
 				});
 			});
   });
@@ -139,7 +155,8 @@ app.post('/add',(req,res)=>{
 			createdAt: dateString,
 			session_id: req.session.id});
 		m.save(function(err,saveData,saveCount){
-			Data.findOne({website_id:123},function(err,data,count){
+			Data.findOne({website_id:888},function(err,data,count){
+				data.newmessages=data.newmessages+1;
 				data.messages=data.messages+1;
 				data.save(function(err,saveData,saveCount){
 					res.redirect('/add');
@@ -189,7 +206,12 @@ app.post('/cancelDisplay',(req,res)=>{
 });
 
 app.get('/login',(req,res)=>{
-	res.render('login');
+	if(req.user===undefined){
+		res.render('login');
+	}else{
+		res.redirect('/');
+	}
+
 });
 
 app.get('/register',(req,res)=>{
@@ -209,7 +231,12 @@ app.post('/register',(req,res)=>{
 app.post('/login',(req,res)=>{
 	function success(user){
 		req.logIn(user,function(err){
-			res.redirect('/manage');
+			Data.findOne({website_id:888},function(err,data,count){
+				data.newmessages=0;
+				data.save(function(err,saveData,saveCount){
+					res.redirect('/manage');
+				});
+			});
 		});
 	}
 	function error(errObj){

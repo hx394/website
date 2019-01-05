@@ -29,7 +29,8 @@ mongoose.model('User',userSchema);
 const dataSchema= new mongoose.Schema({
   website_id: Number,
   visited: Number,
-  messages: Number
+  messages: Number,
+  newmessages:Number
 });
 
 mongoose.model('Data',dataSchema);
