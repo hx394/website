@@ -28,7 +28,9 @@ p {
   min-width: auto;
 }
 
-
+.ca-container{
+  height:400px;
+}
 
 .carousel {
   margin-left: auto;
