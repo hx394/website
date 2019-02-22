@@ -6,10 +6,10 @@ const session=require('express-session');
 //const port=3000;
 const app=express();
 
-var redirectToHTTPS = require('express-http-to-https').redirectToHTTPS;
+//var redirectToHTTPS = require('express-http-to-https').redirectToHTTPS;
 
 // Don't redirect if the hostname is `localhost:port` or the route is `/insecure`
-app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
+//app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
 
 require('./db');
 const auth=require('./auth');
@@ -74,6 +74,12 @@ app.use(function(req,res,next){
 	});
 });
 
+http.get('*', function(req, res) {
+    res.redirect('https://' + req.headers.host + req.url);
+
+    // Or, if you don't want to automatically detect the domain name from the request header, you can hard code it:
+    // res.redirect('https://example.com' + req.url);
+});
 
 
 app.get('/',(req,res)=>{
