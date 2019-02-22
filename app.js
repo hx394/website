@@ -5,6 +5,12 @@ const session=require('express-session');
 
 //const port=3000;
 const app=express();
+
+var redirectToHTTPS = require('express-http-to-https').redirectToHTTPS;
+
+// Don't redirect if the hostname is `localhost:port` or the route is `/insecure`
+app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
+
 require('./db');
 const auth=require('./auth');
 const passport=require('passport');
@@ -68,10 +74,7 @@ app.use(function(req,res,next){
 	});
 });
 
-var redirectToHTTPS = require('express-http-to-https').redirectToHTTPS
 
-// Don't redirect if the hostname is `localhost:port` or the route is `/insecure`
-app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
 
 app.get('/',(req,res)=>{
 	Data.findOne({website_id:888},function(err,data,count){
