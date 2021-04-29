@@ -106,3 +106,16 @@ h3 { color: navy; }
 .blue{
   background-color: blue;
 }
+
+.girl{
+  height:336px;
+  width:278px;
+  position:fixed; right:10px; bottom:120px;
+  z-index: 99999;
+}
+#kika{
+  cursor:pointer;
+}
+#forBalloon{
+  visibility: hidden;
+}
