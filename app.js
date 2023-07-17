@@ -254,7 +254,7 @@ app.post('/login',(req,res)=>{
 	auth.login(success,error,req,res);
 });
 
-app.post('/logout', function(req, res,next){
+app.get('/logout', function(req, res,next){
   req.logout(function(err){
 		if(err){return next(err);}
 		res.redirect('/');
