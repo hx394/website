@@ -53,5 +53,9 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
  // if we're not in PRODUCTION mode, then use
  dbconf = 'mongodb://localhost/finalProject';
 }
+mongoose.set('useCreateIndex', true);
+mongoose.connect(dbconf, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connection.once('open',() => {
+  console.log('connceted to database.')
+});
 
-mongoose.connect(dbconf);
