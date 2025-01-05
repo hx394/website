@@ -16,8 +16,11 @@ const auth=require('./auth');
 const passport=require('passport');
 
 const mongoose=require('mongoose');
+
+
+
 const Data=mongoose.model('Data');
-//const User=mongoose.model('User');
+const User=mongoose.model('User');
 const Message=mongoose.model('Message');
 
 app.set('view engine','hbs');
@@ -36,7 +39,7 @@ app.use(session(sessionOptions));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(function(req,res,next){
+app.use((req,res,next)=>{
 	res.locals.user=req.user;
 	req.session.saveThis=0;
 	next();
@@ -46,7 +49,7 @@ app.use(function(req,res,next){
 
 //app.use(cookieParser());
 
-app.use(function(req,res,next){
+app.use((req,res,next)=>{
 	console.log(req.method," ",req.path);
 	console.log("=====");
 	console.log("req.query: ",req.query);
@@ -55,8 +58,8 @@ app.use(function(req,res,next){
 });
 
 
-app.use(function(req,res,next){
-	Data.find({website_id:888},function(err,datas,count){
+app.use((req,res,next)=>{
+	Data.find({website_id:888},(err,datas,count)=>{
 		if(datas.length===0){
 			const d=new Data({website_id:888,
 				visited:0,
@@ -78,11 +81,11 @@ app.use(function(req,res,next){
 
 
 app.get('/',(req,res)=>{
-	Data.findOne({website_id:888},function(err,data,count){
+	Data.findOne({website_id:888},(err,data,count)=>{
 		data.visited=data.visited+1;
 		const visitNum=data.visited;
 		const newmessages=data.newmessages;
-		data.save(function(err,saveData,saveCount){
+		data.save((err,saveData,saveCount)=>{
 			const context={
 				visited:visitNum,
 				newmessages:newmessages
@@ -96,11 +99,15 @@ app.get('/aboutme',(req,res)=>{
 	res.render('aboutme');
 });
 
+app.get('/resume',(req,res)=>{
+	res.render('resume');
+});
+
 app.get('/messageboard', (req, res) => {
-  Message.find({display:true,secret:false},function(err,messages,count){
-			Data.findOne({website_id:888},function(err,data,count){
+  Message.find({display:true,secret:false},(err,messages,count)=>{
+			Data.findOne({website_id:888},(err,data,count)=>{
 				const messageNum=data.messages;
-				data.save(function(err,saveData,saveCount){
+				data.save((err,saveData,saveCount)=>{
 					const context={
 						messageNum:messageNum,
 						messages:messages,
@@ -113,7 +120,7 @@ app.get('/messageboard', (req, res) => {
 });
 
 app.get('/add',(req,res)=>{
-	Message.find(function(err,messages,count){
+	Message.find((err,messages,count)=>{
 		const sessionOnlyMessages=messages.filter(mes=>mes.session_id===req.session.id);
 		const context={
 			sessionOnlyMessages:sessionOnlyMessages
@@ -127,7 +134,7 @@ app.get('/add',(req,res)=>{
 });
 
 app.post('/add',(req,res)=>{
-	Message.find({session_id:req.session.id},function(err,messages,count){
+	Message.find({session_id:req.session.id},(err,messages,count)=>{
 	const context={
 		sessionOnlyMessages:messages
 	};
@@ -163,11 +170,11 @@ app.post('/add',(req,res)=>{
 			text: req.body.content,
 			createdAt: dateString,
 			session_id: req.session.id});
-		m.save(function(err,saveData,saveCount){
-			Data.findOne({website_id:888},function(err,data,count){
+		m.save((err,saveData,saveCount)=>{
+			Data.findOne({website_id:888},(err,data,count)=>{
 				data.newmessages=data.newmessages+1;
 				data.messages=data.messages+1;
-				data.save(function(err,saveData,saveCount){
+				data.save((err,saveData,saveCount)=>{
 					res.redirect('/add');
 				});
 			});
@@ -181,7 +188,7 @@ app.get('/manage',(req,res)=>{
 		if(req.user===undefined){
 			res.redirect('/login');
 		}else{
-			Message.find(function(err,messages,count){
+			Message.find((err,messages,count)=>{
 				const context={
 					messages:messages
 				};
@@ -191,24 +198,24 @@ app.get('/manage',(req,res)=>{
 });
 
 app.post('/delete',(req,res)=>{
-		Message.findOne({slug:req.body.stuff}).remove(function(err,data,count){
+		Message.findOne({slug:req.body.stuff}).remove((err,data,count)=>{
 			res.redirect('/manage');
 		});
 });
 
 app.post('/display',(req,res)=>{
-	Message.findOne({slug:req.body.stuff},function(err,message,count){
+	Message.findOne({slug:req.body.stuff},(err,message,count)=>{
 		message.display=true;
-		message.save(function(err,message,count){
+		message.save((err,message,count)=>{
 			res.redirect('/manage');
 		});
 	});
 });
 
 app.post('/cancelDisplay',(req,res)=>{
-	Message.findOne({slug:req.body.stuff},function(err,message,count){
+	Message.findOne({slug:req.body.stuff},(err,message,count)=>{
 		message.display=false;
-		message.save(function(err,message,count){
+		message.save((err,message,count)=>{
 			res.redirect('/manage');
 		});
 	});
@@ -239,10 +246,10 @@ app.post('/register',(req,res)=>{
 
 app.post('/login',(req,res)=>{
 	function success(user){
-		req.logIn(user,function(err){
-			Data.findOne({website_id:888},function(err,data,count){
+		req.logIn(user,(err)=>{
+			Data.findOne({website_id:888},(err,data,count)=>{
 				data.newmessages=0;
-				data.save(function(err,saveData,saveCount){
+				data.save((err,saveData,saveCount)=>{
 					res.redirect('/manage');
 				});
 			});
@@ -254,13 +261,9 @@ app.post('/login',(req,res)=>{
 	auth.login(success,error,req,res);
 });
 
-app.get('/logout', function(req, res,next){
-  req.logout(function(err){
-		if(err){return next(err);}
-		res.redirect('/');
-	});
-
+app.get('/logout', (req, res)=>{
+  req.logout();
+  res.redirect('/');
 });
-
 
 app.listen(process.env.PORT||3000);
