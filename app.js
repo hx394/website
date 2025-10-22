@@ -261,9 +261,16 @@ app.post('/login',(req,res)=>{
 	auth.login(success,error,req,res);
 });
 
-app.get('/logout', (req, res)=>{
-  req.logout();
-  res.redirect('/');
-});
+app.get('/logout',(req,res)=>{
+    req.logout((err)=>{
+      if (err) { return next(err);}
+    });
+    res.redirect('/');
+  });
+
+// app.get('/logout', (req, res)=>{
+// 	req.logout();
+// 	res.redirect('/');
+//   });
 
 app.listen(process.env.PORT||3000);
