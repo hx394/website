@@ -1,3 +1,4 @@
+
 const mongoose=require('mongoose');
 const URLSlugs = require('mongoose-url-slugs');
 const passportLocalMongoose=require('passport-local-mongoose');
@@ -58,4 +59,3 @@ mongoose.connect(dbconf, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.once('open',() => {
   console.log('connceted to database.')
 });
-
