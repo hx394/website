@@ -104,6 +104,10 @@ app.get('/resume',(req,res)=>{
 	res.render('resume');
 });
 
+app.get('/game',(req,res)=>{
+	res.render('game');
+});
+
 app.get('/messageboard', (req, res) => {
   Message.find({display:true,secret:false},(err,messages,count)=>{
 			Data.findOne({website_id:888},(err,data,count)=>{
