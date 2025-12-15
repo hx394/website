@@ -161,6 +161,11 @@ app.post('/add',(req,res)=>{
 		context.message="Content cannot be empty";
 		res.render('add',context);
 		return;
+	}else if(req.body.secret!=="true" && req.body.secret!=="false"){
+		console.log("wrong secret selection");
+		context.message="Secret is not true or false."
+		res.render('add',context);
+		return;
 	}
 		const currentDate = new Date();
 		const date = currentDate.getDate();
