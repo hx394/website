@@ -1,0 +1,135 @@
+
+{{#if user}}
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">许弘臻的小站</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="/">Home</a></li>
+					<li><a href="/aboutme">About me</a></li>
+					<li><a href="/messageboard">Message board</a></li>
+					<li><a href="/add">Leave a message</a></li>
+					<li><a href="/resume">Contact Me</a></li>
+					<li class="active"><a href="/SelectGame">Game</a></li>
+					<li><a href="/manage">manage</a></li>
+					<li><a href="/logout">logout</a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</nav>
+	<h1>Welcome, {{user.username}}!</h1>
+{{/if}}
+{{#unless user}}
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">许弘臻的小站</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="/">Home</a></li>
+					<li><a href="/aboutme">About me</a></li>
+					<li><a href="/messageboard">Message board</a></li>
+					<li><a href="/add">Leave a message</a></li>
+					<li><a href="/resume">Contact Me</a></li>
+					<li class="active"><a href="/SelectGame">Game</a></li>
+					<li><a href="/login">Manage login</a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</nav>
+{{/unless}}
+
+
+
+
+<div >
+    
+    <div class="container"><br/>
+    <div class="row"><div class="col-md-4"><header class="bg-blue-600 text-white p-4 shadow-md">
+        <h1 class="text-2xl font-bold">交互式白板</h1>
+    </header></div>
+        <!-- 左侧工具栏 -->
+        <div class="col-md-8">
+            <div >
+            <div>
+                <label class="block text-sm font-medium text-gray-700">画笔颜色</label>
+                <input type="color" id="colorPicker" value="#000000" class="w-full h-10">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">画笔粗细</label>
+                <input type="range" id="brushSize" min="1" max="50" value="5" class="w-full">
+                <span id="brushSizeValue" class="text-xs text-gray-500">5px</span>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">不透明度</label>
+                <input type="range" id="opacity" min="0" max="100" value="100" class="w-full">
+                <span id="opacityValue" class="text-xs text-gray-500">100%</span>
+            </div>
+        </div>
+        </div>
+	</div></div>
+<div class="container">
+		    <div class="row">
+      
+      <div class="col-md-2">   <button id="pencil" >
+				<p><a class="btn btn-primary btn-lg"  ><img src="img/whiteboardIcons/pencil.jpeg" width="60px" alt="pencil" />画笔  </a></p>
+                
+            </button><br/><br/>
+            <button id="eraser" >
+				<p><a class="btn btn-primary btn-lg"  ><img src="img/whiteboardIcons/eraser.jpeg" width="60px" alt="eraser" />擦除 </a></p>
+                
+            </button><br/><br/>
+            <button id="clear" >
+				<p><a class="btn btn-primary btn-lg"  ><img src="img/whiteboardIcons/empty.jpg" width="60px" alt="clear" />清空</a></p>
+                 
+            </button><br/><br/>
+            <button id="undo" >
+				<p><a class="btn btn-primary btn-lg"  ><img src="img/whiteboardIcons/cancel.jpg" width="60px" alt="cancel" />撤销 </a></p>
+                
+            </button><br/><br/>
+            <button id="redo" >
+				<p><a class="btn btn-primary btn-lg"  > <img src="img/whiteboardIcons/redo.jpg"  width="60px" alt="redo" />重做</a></p>
+                
+            </button><br/><br/>
+            <button id="save" >
+				<p><a class="btn btn-primary btn-lg"  ><img src="img/whiteboardIcons/savePic.jpeg"  width="60px" alt="savePic" />保存</a></p>
+                 
+            </button>     </div>
+	  <div class="col-md-10">     
+            <canvas id="canvas"  style="touch-action: none;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);height:650px;"></canvas>
+        </div><br/><br/>
+      
+    </div></div>
+
+        <!-- 右侧属性面板 -->
+
+
+		
+
+        <!-- 主画布区域 -->
+   
+		</div>
+    </div>
+    <script src="js/whiteboard.js"></script>
+</div>
+
+	 
+
+

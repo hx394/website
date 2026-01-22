@@ -104,8 +104,16 @@ app.get('/resume',(req,res)=>{
 	res.render('resume');
 });
 
+app.get('/SelectGame',(req,res)=>{
+	res.render('SelectGame');
+});
+
 app.get('/game',(req,res)=>{
 	res.render('game');
+});
+
+app.get('/game2',(req,res)=>{
+	res.render('game2');
 });
 
 app.get('/messageboard', (req, res) => {

@@ -14,7 +14,8 @@
 
 	<!-- Custom styles for this template -->
 	<link href="/css/custom.css" rel="stylesheet">
-
+	<!-- whiteboard styles for this template -->
+    
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -22,6 +23,23 @@
 	<![endif]-->
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+	
+  
+
+
+    
+	<!-- <script src="https://cdn.tailwindcss.com"></script><link rel="stylesheet" href="/css/all.min.css"> -->
+    <style>
+        #canvas {
+            touch-action: none;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .tool-btn.active {
+            @apply bg-blue-100 border-blue-400;
+        }
+    </style>
 
 </head>
 <body>
