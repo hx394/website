@@ -116,6 +116,14 @@ app.get('/game2',(req,res)=>{
 	res.render('game2');
 });
 
+app.get('/game3',(req,res)=>{
+	res.render('game3');
+});
+
+app.get('/game4',(req,res)=>{
+	res.render('game4');
+});
+
 app.get('/messageboard', (req, res) => {
   Message.find({display:true,secret:false},(err,messages,count)=>{
 			Data.findOne({website_id:888},(err,data,count)=>{

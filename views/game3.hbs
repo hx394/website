@@ -1,3 +1,4 @@
+
 {{#if user}}
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
@@ -53,30 +54,29 @@
 	</nav>
 {{/unless}}
 
-<div>
-<h1>请选择游戏或者应用。Please select your game or application.</h1>
-<table border="1">
-  <tr>
-    <th>名称 Names</th>
-    <th>链接 Links</th>
-  </tr>
-  <tr>
-    <td><h2>今日的塔罗牌 Tarot Card for Today</h2></td>
-    <td><p><a class="btn btn-primary btn-lg" href="/game" target="_blank" role="button">🎮Play</a></p></td>
-    
-  </tr>
-  <tr>
-    <td><h2>自由风格创作白板 Whiteboard of Free Style</h2></td>
-    <td><p><a class="btn btn-primary btn-lg" href="/game2" target="_blank" role="button">🎮Play</a></p></td>
 
-  </tr>
-  <tr>
-	<td><h2>金刚经注音版阅读</h2></td>
-	<td><p><a class="btn btn-primary btn-lg" href="/game3" target="_blank" role="button">🎙️Read</a></p></td>
-  </tr>
-  <tr>
-	<td><h2>心经注音版阅读</h2></td>
-	<td><p><a class="btn btn-primary btn-lg" href="/game4" target="_blank" role="button">🎙️Read</a></p></td>
-  </tr>
-</table>
+
+
+<div >
+
+<p>注意：ios系统不可使用录音机</p>
+
+<button id="startRecording" style="width: 200px; height: 50px;">开始录音</button>
+<button id="stopRecording" style="width: 200px; height: 50px;" disabled>停止录音</button>
+<audio id="audioPlayer" controls style="width: 300px; height: 40px;"></audio>
+<script async src="js/record.js" ></script>
+
+
+
+
+    <div class="container"><br/>
+		
+		<h1><a href="pdf/jgj.pdf" target="_blank">点击查看和念经</a></h1>
+    </div>
+
+	
 </div>
+
+	 
+
+

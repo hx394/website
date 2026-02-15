@@ -33,6 +33,8 @@ p {
   height:400px;
 }
 
+
+
 .carousel {
   margin-left: auto;
   margin-right: auto;
@@ -119,3 +121,10 @@ h3 { color: navy; }
 #forBalloon{
   visibility: hidden;
 }
+
+
+.responsive-container{
+    width: 100%;  /* 宽度设置为100%，使其充满父容器 */
+    height: 100vh; /* 高度设置为视口高度的100%，可以根据需要调整 */
+    border: 5px solid #3e84e0; /* 可选，移除iframe的边框 */
+  }
