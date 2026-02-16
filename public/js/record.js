@@ -1,20 +1,36 @@
 let mediaRecorder;
 let audioChunks = [];
-
+let downloadLink;
 // 获取用户媒体设备（麦克风）
 async function startRecording() {
+    let down=document.getElementById("downloading");
+    down.style.display="none";
     try {
+
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        mediaRecorder = new MediaRecorder(stream);
+        const options = { mimeType: 'audio/mp4' };
+        mediaRecorder = new MediaRecorder(stream,options);
+        
+        
         audioChunks = [];
         mediaRecorder.ondataavailable = event => {
             audioChunks.push(event.data);
         };
         mediaRecorder.onstop = () => {
-            const audioBlob = new Blob(audioChunks);
+            const audioBlob = new Blob(audioChunks,{ type: mediaRecorder.mimeType });
             const audioUrl = URL.createObjectURL(audioBlob);
             const audioPlayer = document.getElementById('audioPlayer');
             audioPlayer.src = audioUrl;
+
+                // 创建下载链接并触发下载
+            
+            downloadLink = document.createElement('a');
+            downloadLink.href = audioUrl;
+            downloadLink.download = 'recording.mp4'; // 设置下载的文件名
+            
+            document.body.appendChild(downloadLink);
+       
+
         };
         mediaRecorder.start();
         document.getElementById('startRecording').disabled = true;
@@ -29,8 +45,19 @@ async function stopRecording() {
     mediaRecorder.stop();
     document.getElementById('startRecording').disabled = false;
     document.getElementById('stopRecording').disabled = true;
+    let down=document.getElementById("downloading");
+    down.style.display="block";
+    
+}
+
+async function download(){
+        downloadLink.click();
+            
+            
+          
 }
 
 // 绑定按钮点击事件
 document.getElementById('startRecording').addEventListener('click', startRecording);
 document.getElementById('stopRecording').addEventListener('click', stopRecording);
+document.getElementById('downloading').addEventListener('click',download);
