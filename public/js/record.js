@@ -3,6 +3,7 @@ let audioChunks = [];
 let downloadLink;
 // 获取用户媒体设备（麦克风）
 async function startRecording() {
+    alert("录音开始了！");
     let down=document.getElementById("downloading");
     down.style.display="none";
     try {
@@ -42,6 +43,7 @@ async function startRecording() {
 
 // 停止录音并播放录音文件
 async function stopRecording() {
+    alert("录音结束了！");
     mediaRecorder.stop();
     document.getElementById('startRecording').disabled = false;
     document.getElementById('stopRecording').disabled = true;
@@ -51,6 +53,7 @@ async function stopRecording() {
 }
 
 async function download(){
+        alert("录音下载了！");
         downloadLink.click();
             
             
