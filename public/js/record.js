@@ -1,6 +1,10 @@
 let mediaRecorder;
 let audioChunks = [];
 let downloadLink;
+
+let maxRecordingTime = 100*60*1000;
+let recordingTimer;
+
 // 获取用户媒体设备（麦克风）
 async function startRecording() {
     alert("录音开始了！");
@@ -22,7 +26,7 @@ async function startRecording() {
             const audioUrl = URL.createObjectURL(audioBlob);
             const audioPlayer = document.getElementById('audioPlayer');
             audioPlayer.src = audioUrl;
-
+            
                 // 创建下载链接并触发下载
             
             downloadLink = document.createElement('a');
@@ -30,12 +34,21 @@ async function startRecording() {
             downloadLink.download = 'recording.mp4'; // 设置下载的文件名
             
             document.body.appendChild(downloadLink);
-       
-
+            // 释放流媒体资源
+            stream.getTracks().forEach(track => track.stop());
+            audioChunks = []; // 清空缓冲区
+             // 如果不再需要audioUrl，也应释放
+            setTimeout(() => {alert("释放已录音的内容的空间"); URL.revokeObjectURL(audioUrl);}, 9000000); 
         };
         mediaRecorder.start();
         document.getElementById('startRecording').disabled = true;
         document.getElementById('stopRecording').disabled = false;
+
+          // 设置自动停止计时器
+        recordingTimer = setTimeout(() => {
+            stopRecording();
+        
+        }, maxRecordingTime);
     } catch (error) {
         console.error('Error accessing the media devices.', error);
     }
@@ -49,7 +62,8 @@ async function stopRecording() {
     document.getElementById('stopRecording').disabled = true;
     let down=document.getElementById("downloading");
     down.style.display="block";
-    
+    clearTimeout(recordingTimer); // 清除定时器
+   
 }
 
 async function download(){
